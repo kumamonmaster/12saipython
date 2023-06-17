@@ -23,5 +23,15 @@ serifu_text.place(x=160, y=10)
 sys_text = tk.Label(text="褒美はいくらあげますか？", fg="red")
 sys_text.place(x=180, y=380)
 
+# 入力ボックス配置
+entry = tk.Entry(width=12)
+entry.place(x=180, y=420)
+bold_text = tk.Label(text="ゴールド")
+bold_text.place(x=330, y=420)
+
+# ボタン配置
+button = tk.Button(text="決定")
+button.place(x=420, y=420)
+
 # メインループ
 root.mainloop()
