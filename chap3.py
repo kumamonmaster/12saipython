@@ -24,5 +24,9 @@ entry.place(x=50, y=133)
 ask_button = tk.Button(text="聞く")
 ask_button.place(x=260, y=125)
 
+# 答え表示
+answer = tk.Label(text="・・・・・・・・・", bg="white")
+answer.place(x=115, y=235)
+
 # メインループ
 root.mainloop()
