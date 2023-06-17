@@ -28,5 +28,15 @@ ask_button.place(x=260, y=125)
 answer = tk.Label(text="・・・・・・・・・", bg="white")
 answer.place(x=115, y=235)
 
+# イベント設定
+def ask_click():
+    minutes = entry.get()
+    hours = round(float(minutes) / 60, 2)
+    answer["text"] =f"{minutes}分は{hours}時間だね！"
+    # テキストボックスをクリア
+    entry.delete(0, tk.END)
+
+ask_button["command"] = ask_click
+
 # メインループ
 root.mainloop()
