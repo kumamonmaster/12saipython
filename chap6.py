@@ -1,5 +1,11 @@
 import tkinter as tk
 
+# マップの描画
+def draw_map():
+    for y in range(MAX_HEIGHT):
+        for x in range(MAX_WIDTH):
+            canvas.create_image(x * 62 + 31, y * 62 + 31, image=images[map_data[y][x]])
+
 # ウィンドウの作成
 root = tk.Tk()
 root.title("ダンジョン＆パイソン")
@@ -33,4 +39,5 @@ map_data = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
 
+draw_map()
 root.mainloop()
