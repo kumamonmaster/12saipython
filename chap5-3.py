@@ -19,24 +19,28 @@ distance_px = 4
 
 # データの作成
 data = [70, 15, 66, 21, 19, 97, 33, 44, 30, 2]
-len_data = len(data)
 
 # グラフの描画
-def draw_graph():
+def draw_graph(roop_count):
     x = start_x
     y = start_y
     root.update()
+    time.sleep(0.5)
     canvas.delete("graph")
-    time.sleep(0.1)
 
-    for i in data:
-        canvas.create_rectangle(x, y, x + i * width_px, y + height_px, fill="blue", outline="blue", tags="graph")
+    for i in range(len(data)):
+        if i == roop_count or i == roop_count + 1:
+            color = "red"
+        else:
+            color = "blue"
+
+        canvas.create_rectangle(x, y, x + data[i] * width_px, y + height_px, fill=color, outline=color, tags="graph")
         y = y + height_px + distance_px
 
-for k in range(len_data - 1, 0, -1):
+for k in range(len(data) - 1, 0, -1):
     for j in range(0, k):
         if data[j] > data[j + 1]:
             data[j], data[j + 1] = data[j + 1], data[j]
-        draw_graph()
+        draw_graph(j)
 
 root.mainloop()
