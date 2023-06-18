@@ -11,7 +11,7 @@ def draw_map():
 
 # 移動先のチェック
 def check_move(x, y):
-    global brave_x, brave_y
+    global brave_x, brave_y, key_flag
     if x >= 0 and x < MAX_WIDTH and y >= 0 and y < MAX_HEIGHT:
         p = map_data[y][x]
         if p == 1:
@@ -21,6 +21,11 @@ def check_move(x, y):
             map_data[y][x] = 0
             canvas.delete("all")
             draw_map()
+        elif p == 2:
+            if key_flag == True:
+                ending()
+            else:
+                return
 
         brave_x = x
         brave_y = y
@@ -41,6 +46,23 @@ def click_btn_left():
 # 右ボタンクリック
 def click_btn_right():
     check_move(brave_x + 1, brave_y)
+
+# エンディング表示
+def ending():
+    canvas.delete("all")
+    canvas.create_rectangle(0, 0, 620, 434, fill="black")
+    canvas.create_text(300, 200,
+        fill="white", font=("MS ゴシック", 15),
+        text="""ゴールおめでとう。
+
+だが、君の戦いはまだ始まったばかりだ。
+
+                                ・・・つづく？""")
+    # ボタンを無効化
+    btn_up["state"] = "disabled"
+    btn_down["state"] = "disabled"
+    btn_left["state"] = "disabled"
+    btn_right["state"] = "disabled"
 
 # ウィンドウの作成
 root = tk.Tk()
