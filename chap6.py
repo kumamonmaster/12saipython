@@ -9,6 +9,31 @@ def draw_map():
     # 主人公表示
     canvas.create_image(brave_x * 62 + 31, brave_y * 62 + 31, image=images[4], tag="brave")
 
+
+# 上ボタンクリック
+def click_btn_up():
+    global brave_y
+    brave_y = brave_y - 1
+    canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
+
+# 下ボタンクリック
+def click_btn_down():
+    global brave_y
+    brave_y = brave_y + 1
+    canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
+
+# 左ボタンクリック
+def click_btn_left():
+    global brave_x
+    brave_x = brave_x - 1
+    canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
+
+# 右ボタンクリック
+def click_btn_right():
+    global brave_x
+    brave_x = brave_x + 1
+    canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
+
 # ウィンドウの作成
 root = tk.Tk()
 root.title("ダンジョン＆パイソン")
@@ -23,15 +48,19 @@ canvas.create_rectangle(0, 0, 620, 434, fill="gray", tag="drawField")
 # ボタン配置
 btn_up = tk.Button(text="↑")
 btn_up.place(x=720, y=150)
+btn_up["command"] = click_btn_up
 
 btn_down = tk.Button(text="↓")
 btn_down.place(x=720, y=210)
+btn_down["command"] = click_btn_down
 
 btn_left = tk.Button(text="←")
 btn_left.place(x=660, y=180)
+btn_left["command"] = click_btn_left
 
 btn_right = tk.Button(text="→")
 btn_right.place(x=780, y=180)
+btn_right["command"] = click_btn_right
 
 # 画像読み込み
 images = [
