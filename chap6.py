@@ -16,6 +16,12 @@ def check_move(x, y):
         p = map_data[y][x]
         if p == 1:
             return
+        elif p == 3:
+            key_flag = True
+            map_data[y][x] = 0
+            canvas.delete("all")
+            draw_map()
+
         brave_x = x
         brave_y = y
         canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
@@ -95,6 +101,9 @@ map_data = [
 # 主人公の位置
 brave_x = 1
 brave_y = 0
+
+# 鍵取得フラグ
+key_flag = False
 
 draw_map()
 root.mainloop()
