@@ -64,6 +64,12 @@ btn_right = tk.Button(text="→")
 btn_right.place(x=780, y=180)
 btn_right["command"] = click_btn_right
 
+# キーボードの操作設定
+root.bind("<Up>", lambda event: click_btn_up())
+root.bind("<Down>", lambda event: click_btn_down())
+root.bind("<Left>", lambda event: click_btn_left())
+root.bind("<Right>", lambda event: click_btn_right())
+
 # 画像読み込み
 images = [
     tk.PhotoImage(file="img6/chap6-mapfield.png"),
