@@ -9,30 +9,32 @@ def draw_map():
     # 主人公表示
     canvas.create_image(brave_x * 62 + 31, brave_y * 62 + 31, image=images[4], tag="brave")
 
+# 移動先のチェック
+def check_move(x, y):
+    global brave_x, brave_y
+    if x >= 0 and x < MAX_WIDTH and y >= 0 and y < MAX_HEIGHT:
+        p = map_data[y][x]
+        if p == 1:
+            return
+        brave_x = x
+        brave_y = y
+        canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
 
 # 上ボタンクリック
 def click_btn_up():
-    global brave_y
-    brave_y = brave_y - 1
-    canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
+    check_move(brave_x, brave_y - 1)
 
 # 下ボタンクリック
 def click_btn_down():
-    global brave_y
-    brave_y = brave_y + 1
-    canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
+    check_move(brave_x, brave_y + 1)
 
 # 左ボタンクリック
 def click_btn_left():
-    global brave_x
-    brave_x = brave_x - 1
-    canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
+    check_move(brave_x - 1, brave_y)
 
 # 右ボタンクリック
 def click_btn_right():
-    global brave_x
-    brave_x = brave_x + 1
-    canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
+    check_move(brave_x + 1, brave_y)
 
 # ウィンドウの作成
 root = tk.Tk()
