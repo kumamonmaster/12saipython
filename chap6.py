@@ -6,6 +6,9 @@ def draw_map():
         for x in range(MAX_WIDTH):
             canvas.create_image(x * 62 + 31, y * 62 + 31, image=images[map_data[y][x]])
 
+    # 主人公表示
+    canvas.create_image(brave_x * 62 + 31, brave_y * 62 + 31, image=images[4], tag="brave")
+
 # ウィンドウの作成
 root = tk.Tk()
 root.title("ダンジョン＆パイソン")
@@ -38,6 +41,10 @@ map_data = [
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
+
+# 主人公の位置
+brave_x = 1
+brave_y = 0
 
 draw_map()
 root.mainloop()
