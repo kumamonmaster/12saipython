@@ -20,6 +20,19 @@ canvas = tk.Canvas(width=620, height=434)
 canvas.place(x=10, y=10)
 canvas.create_rectangle(0, 0, 620, 434, fill="gray", tag="drawField")
 
+# ボタン配置
+btn_up = tk.Button(text="↑")
+btn_up.place(x=720, y=150)
+
+btn_down = tk.Button(text="↓")
+btn_down.place(x=720, y=210)
+
+btn_left = tk.Button(text="←")
+btn_left.place(x=660, y=180)
+
+btn_right = tk.Button(text="→")
+btn_right.place(x=780, y=180)
+
 # 画像読み込み
 images = [
     tk.PhotoImage(file="img6/chap6-mapfield.png"),
