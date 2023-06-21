@@ -44,6 +44,21 @@ class FightManager:
         self.brave_y = y
         self.brave = brave
 
+        # モンスターの画像を表示
+        p = self.map_data[y][x]
+        self.canvas.delete("all")
+        self.canvas.create_rectangle(0, 0, 620, 434, fill="black")
+        self.canvas.create_image(180, 160, image=self.images[p - 5])
+        self.label["text"] = ""
+
+        # モンスターのオブジェクトを作成
+        if p == 5:
+            self.monster = Monster1()
+        elif p == 6:
+            self.monster = Monster2()
+
+        self.label["text"] = f"{self.monster.name}が現れた！"
+
     def click_fight(self):
         """攻撃ボタンクリック"""
         pass
