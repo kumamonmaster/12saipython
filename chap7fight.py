@@ -67,3 +67,30 @@ class Character:
             self.hp = 0
 
         return self.hp
+
+
+class Brave(Character):
+    """勇者クラス"""
+    def __init__(self) -> None:
+        self.name = "勇勇者ハル"
+        self.hp = 30
+        self.atk = 15
+        self.dfs = 10
+
+
+class Monster1(Character):
+    """モンスター1クラス"""
+    def __init__(self) -> None:
+        self.name = "マコデビル"
+        self.hp = 20
+        self.atk = 15
+        self.dfs = 5
+
+
+class Monster2(Character):
+    """モンスター2クラス"""
+    def __init__(self) -> None:
+        self.name = "リリースネーク"
+        self.hp = 10
+        self.atk = 8
+        self.dfs = 5

@@ -133,6 +133,8 @@ map_data = [
 # 主人公の位置
 brave_x = 1
 brave_y = 0
+brave = chap7fight.Brave()
+print(brave.get_atk())
 
 # 鍵取得フラグ
 key_flag = False
