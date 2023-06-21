@@ -47,9 +47,21 @@ class FightManager:
 
 class Character:
     """キャラクタークラス"""
+    def __new__(cls) -> None:
+        obj = super().__new__(cls)
+        obj.rsv = 1
+
+        return obj
+
+    def reserve(self):
+        """力をためる"""
+        self.rsv += 1
+
     def get_atk(self):
         """攻撃力を返す"""
-        return random.randint(1, self.atk)
+        r = self.rsv
+        self.rsv = 1
+        return random.randint(1, self.atk * r)
 
     def get_dfs(self):
         """防御力を返す"""
