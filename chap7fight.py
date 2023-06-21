@@ -72,7 +72,7 @@ class Character:
 class Brave(Character):
     """勇者クラス"""
     def __init__(self) -> None:
-        self.name = "勇勇者ハル"
+        self.name = "勇者ハル"
         self.hp = 30
         self.atk = 15
         self.dfs = 10
