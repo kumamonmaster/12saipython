@@ -18,3 +18,7 @@ class FightManager:
 
         # 非表示
         self.dialog.place_forget()
+
+    def fight_start(self, map_data, x, y):
+        """戦闘開始"""
+        self.dialog.place(x=10, y=10)
