@@ -1,4 +1,5 @@
 import random
+import time
 import tkinter as tk
 
 
@@ -7,29 +8,49 @@ class FightManager:
         self.dialog = tk.Frame(width=820, height=434)
         self.dialog.place(x=10, y=10)
 
-        canvas = tk.Canvas(self.dialog, width=820, height=434)
-        canvas.place(x=0, y=0)
-        canvas.create_rectangle(0, 0, 620, 434, fill="black")
+        self.canvas = tk.Canvas(self.dialog, width=820, height=434)
+        self.canvas.place(x=0, y=0)
+        self.canvas.create_rectangle(0, 0, 620, 434, fill="black")
 
-        # 「勝った」ボタン
-        btn_win = tk.Button(self.dialog, text="勝った")
-        btn_win.place(x=180, y=340)
-        btn_win["command"] = self.fight_win
+        # 「攻撃」ボタン
+        self.fbutton = tk.Button(self.dialog, text="攻撃")
+        self.fbutton.place(x=180, y=340)
+        self.fbutton["command"] = self.click_fight
 
-        # 「負けた」ボタン
-        btn_lose = tk.Button(self.dialog, text="負けた")
-        btn_lose.place(x=320, y=340)
-        btn_lose["command"] = self.fight_lose
+        # 「力をためる」ボタン
+        self.rbutton = tk.Button(self.dialog, text="力をためる")
+        self.rbutton.place(x=320, y=340)
+        self.rbutton["command"] = self.click_reserve
+
+        # 画像の読み込み
+        self.images = [
+            tk.PhotoImage(file="img6/chap7-monster1.png"),
+            tk.PhotoImage(file="img6/chap7-monster2.png")
+        ]
+        self.canvas.create_image(180, 160, image=self.images[0])
+
+        # ラベルを配置
+        self.label = tk.Label(self.dialog, text="ラベル", fg="white", bg="black", justify="left")
+        self.label.place(x=360, y=10)
 
         # 非表示
         self.dialog.place_forget()
 
-    def fight_start(self, map_data, x, y):
+    def fight_start(self, map_data, x, y, brave):
         """戦闘開始"""
         self.dialog.place(x=10, y=10)
         self.map_data = map_data
         self.brave_x = x
         self.brave_y = y
+        self.brave = brave
+
+    def click_fight(self):
+        """攻撃ボタンクリック"""
+        pass
+
+    def click_reserve(self):
+        """力をためるボタンクリック"""
+        pass
 
     def fight_win(self):
         """戦闘勝利"""

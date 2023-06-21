@@ -33,7 +33,7 @@ def check_move(x, y):
             else:
                 return
         elif p >= 5:
-            fightmanager.fight_start(map_data, x, y)
+            fightmanager.fight_start(map_data, x, y, brave)
 
         brave_x = x
         brave_y = y
