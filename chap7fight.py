@@ -73,7 +73,34 @@ class FightManager:
         self.do_turn(-1)
 
     def do_turn(self, brave_atk):
-        pass
+        """戦闘処理"""
+        # 主人公のターン
+        monster_dfs = self.monster.get_dfs()
+        if brave_atk < 0:
+            label_text = f"{self.brave.name}は力をためた"
+        else:
+            label_text = f"{self.brave.name}は攻撃した"
+            self.label["text"] = label_text
+            self.dialog.update()
+
+            time.sleep(2)
+
+            dmg = brave_atk - monster_dfs
+            self.monster.culc_hp(brave_atk, monster_dfs)
+            if dmg <= 0:
+                label_text += "\n防がれた"
+            else:
+                label_text += f"\n{dmg}のダメージを与えた"
+
+        # ラベル更新、残り体力表示
+        self.label["text"] = label_text
+        self.dialog.update()
+
+        time.sleep(2)
+
+        label_text += f"\nモンスターの残り体力は{self.monster.hp}"
+        self.label["text"] = label_text
+        self.dialog.update()
 
     def fight_win(self):
         """戦闘勝利"""
