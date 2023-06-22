@@ -102,6 +102,37 @@ class FightManager:
         self.label["text"] = label_text
         self.dialog.update()
 
+        # モンスターのターン
+        time.sleep(2)
+        brave_dfs = self.brave.get_dfs()
+        if random.random() < 0.2:
+            label_text += "\n\nモンスターは力をためた"
+            self.monster.reserve()
+        else:
+            label_text += "\n\nモンスターの攻撃"
+            self.label["text"] = label_text
+            self.dialog.update()
+
+            time.sleep(2)
+
+            monster_atk = self.monster.get_atk()
+            dmg = monster_atk - brave_dfs
+            self.brave.culc_hp(monster_atk, brave_dfs)
+            if dmg <= 0:
+                label_text += "\n防いだ"
+            else:
+                label_text += f"\n{dmg}のダメージを受けた"
+
+        # ラベル更新、残り体力表示
+        self.label["text"] = label_text
+        self.dialog.update()
+
+        time.sleep(2)
+
+        label_text += f"\n勇者の残り体力は{self.brave.hp}"
+        self.label["text"] = label_text
+        self.dialog.update()
+
     def fight_win(self):
         """戦闘勝利"""
         self.map_data[self.brave_y][self.brave_x] = 0
