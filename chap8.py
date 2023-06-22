@@ -15,4 +15,14 @@ message = tk.Label(width=70, height=5, wraplength=840, bg="white", justify="left
 message.place(x=20, y=284)
 message["text"] = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをん"
 
+# ファイル読み込み
+scanario = []
+file = open("img8/scenario.txt", "r", encoding="utf_8")
+while True:
+    line = file.readline()
+    scanario.append(line)
+    if not line:
+        file.close()
+        break
+
 root.mainloop()
