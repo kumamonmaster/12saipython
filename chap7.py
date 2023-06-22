@@ -30,6 +30,7 @@ def check_move(x, y):
         elif p == 2:
             if key_flag == True:
                 ending()
+                return
             else:
                 return
         elif p >= 5:
@@ -106,6 +107,8 @@ root.bind("<Up>", lambda event: click_btn_up())
 root.bind("<Down>", lambda event: click_btn_down())
 root.bind("<Left>", lambda event: click_btn_left())
 root.bind("<Right>", lambda event: click_btn_right())
+root.bind("f", lambda event: fightmanager.click_fight())
+root.bind("r", lambda event: fightmanager.click_reserve())
 
 # 画像読み込み
 images = [
