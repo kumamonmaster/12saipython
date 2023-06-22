@@ -2,7 +2,7 @@ import tkinter as tk
 
 def decode_line(event):
     """1行分のデータをデコードしてメッセージエリアに表示する"""
-    global current_line, bgimg
+    global current_line, bgimg, lcharimg, ccharimg, rcharimg
     if current_line >= len(scanario):
         return
 
@@ -17,6 +17,19 @@ def decode_line(event):
         canvas.delete("all")
         bgimg = tk.PhotoImage(file=params[1])
         canvas.create_image(450, 230, image=bgimg)
+    elif params[0] == "#putChar":
+        if params[2] == "L":
+            canvas.delete("left")
+            lcharimg = tk.PhotoImage(file=params[1])
+            canvas.create_image(200, 160, image=lcharimg, tag="left")
+        elif params[2] == "R":
+            canvas.delete("right")
+            rcharimg = tk.PhotoImage(file=params[1])
+            canvas.create_image(700, 160, image=rcharimg, tag="right")
+        else:
+            canvas.delete("center")
+            ccharimg = tk.PhotoImage(file=params[1])
+            canvas.create_image(450, 160, image=ccharimg, tag="center")
 
 # ウィンドウの作成
 root = tk.Tk()
@@ -49,7 +62,7 @@ message.bind("<Button-1>", decode_line)
 # 画像
 bgimg = None
 lcharimg = None
-charimg = None
+ccharimg = None
 rcharimg = None
 
 root.mainloop()
