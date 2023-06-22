@@ -61,10 +61,18 @@ class FightManager:
 
     def click_fight(self):
         """攻撃ボタンクリック"""
-        pass
+        self.fbutton["state"] = "disabled"
+        self.rbutton["state"] = "disabled"
+        self.do_turn(self.brave.get_atk())
 
     def click_reserve(self):
         """力をためるボタンクリック"""
+        self.fbutton["state"] = "disabled"
+        self.rbutton["state"] = "disabled"
+        self.brave.reserve()
+        self.do_turn(-1)
+
+    def do_turn(self, brave_atk):
         pass
 
     def fight_win(self):
