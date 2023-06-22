@@ -1,7 +1,22 @@
 import tkinter as tk
 
 def decode_line(event):
-    print("クリックされた")
+    """1行分のデータをデコードしてメッセージエリアに表示する"""
+    global current_line, bgimg
+    if current_line >= len(scanario):
+        return
+
+    line = scanario[current_line]
+    current_line += 1
+    line = line.replace("\\n", "\n").strip()
+    params = line.split(" ")
+
+    if line[0] != "#":
+        message["text"] = line
+    elif params[0] == "#back":
+        canvas.delete("all")
+        bgimg = tk.PhotoImage(file=params[1])
+        canvas.create_image(450, 230, image=bgimg)
 
 # ウィンドウの作成
 root = tk.Tk()
@@ -16,7 +31,7 @@ canvas.place(x=0, y=0)
 # メッセージエリア
 message = tk.Label(width=70, height=5, wraplength=840, bg="white", justify="left", anchor="nw")
 message.place(x=20, y=284)
-message["text"] = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをんあいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよわをん"
+message["text"] = "クリックしてスタート"
 
 # ファイル読み込み
 scanario = []
@@ -30,5 +45,11 @@ while True:
 
 current_line = 0
 message.bind("<Button-1>", decode_line)
+
+# 画像
+bgimg = None
+lcharimg = None
+charimg = None
+rcharimg = None
 
 root.mainloop()
