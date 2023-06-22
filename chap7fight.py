@@ -83,7 +83,7 @@ class FightManager:
             self.label["text"] = label_text
             self.dialog.update()
 
-            time.sleep(2)
+            time.sleep(1)
 
             dmg = brave_atk - monster_dfs
             self.monster.culc_hp(brave_atk, monster_dfs)
@@ -96,14 +96,21 @@ class FightManager:
         self.label["text"] = label_text
         self.dialog.update()
 
-        time.sleep(2)
+        time.sleep(1)
 
         label_text += f"\nモンスターの残り体力は{self.monster.hp}"
         self.label["text"] = label_text
         self.dialog.update()
 
+        if self.monster.hp < 1:
+            time.sleep(1)
+            self.fbutton["state"] = "normal"
+            self.rbutton["state"] = "normal"
+            self.fight_win()
+            return
+
         # モンスターのターン
-        time.sleep(2)
+        time.sleep(1)
         brave_dfs = self.brave.get_dfs()
         if random.random() < 0.2:
             label_text += "\n\nモンスターは力をためた"
@@ -113,7 +120,7 @@ class FightManager:
             self.label["text"] = label_text
             self.dialog.update()
 
-            time.sleep(2)
+            time.sleep(1)
 
             monster_atk = self.monster.get_atk()
             dmg = monster_atk - brave_dfs
@@ -127,11 +134,18 @@ class FightManager:
         self.label["text"] = label_text
         self.dialog.update()
 
-        time.sleep(2)
+        time.sleep(1)
 
         label_text += f"\n勇者の残り体力は{self.brave.hp}"
         self.label["text"] = label_text
         self.dialog.update()
+
+        if self.brave.hp < 1:
+            time.sleep(1)
+            self.fight_lose()
+        else:
+            self.fbutton["state"] = "normal"
+            self.rbutton["state"] = "normal"
 
     def fight_win(self):
         """戦闘勝利"""
