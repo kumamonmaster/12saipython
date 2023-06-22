@@ -1,5 +1,8 @@
 import tkinter as tk
 
+def decode_line(event):
+    print("クリックされた")
+
 # ウィンドウの作成
 root = tk.Tk()
 root.title("よろしくアドベンチャー")
@@ -24,5 +27,8 @@ while True:
     if not line:
         file.close()
         break
+
+current_line = 0
+message.bind("<Button-1>", decode_line)
 
 root.mainloop()
