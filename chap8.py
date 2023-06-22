@@ -31,6 +31,14 @@ def decode_line(event):
             canvas.delete("center")
             ccharimg = tk.PhotoImage(file=params[1])
             canvas.create_image(450, 160, image=ccharimg, tag="center")
+    elif params[0] == "#branch":
+        message.unbind("<Button-1>")
+        btn = tk.Button(text=params[2], width=20)
+        branch.append(btn)
+        btn.place(x=300, y=60 + int(params[1]) * 60)
+        jumplabel.append(params[3])
+        if params[4] == "n":
+            return
 
     decode_line(None)
 
@@ -67,5 +75,9 @@ bgimg = None
 lcharimg = None
 ccharimg = None
 rcharimg = None
+
+# 選択肢
+branch = []
+jumplabel = []
 
 root.mainloop()
