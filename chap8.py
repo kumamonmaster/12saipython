@@ -13,6 +13,7 @@ def decode_line(event):
 
     if line[0] != "#":
         message["text"] = line
+        return
     elif params[0] == "#back":
         canvas.delete("all")
         bgimg = tk.PhotoImage(file=params[1])
@@ -30,6 +31,8 @@ def decode_line(event):
             canvas.delete("center")
             ccharimg = tk.PhotoImage(file=params[1])
             canvas.create_image(450, 160, image=ccharimg, tag="center")
+
+    decode_line(None)
 
 # ウィンドウの作成
 root = tk.Tk()
