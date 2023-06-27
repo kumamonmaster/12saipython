@@ -16,12 +16,12 @@ class FightManager:
         self.canvas.create_rectangle(0, 0, 620, 434, fill="black")
 
         # 「攻撃」ボタン
-        self.fbutton = tk.Button(self.dialog, text="攻撃")
+        self.fbutton = tk.Button(self.dialog, text="攻撃(A)")
         self.fbutton.place(x=180, y=340)
         self.fbutton["command"] = self.click_fight
 
         # 「力をためる」ボタン
-        self.rbutton = tk.Button(self.dialog, text="力をためる")
+        self.rbutton = tk.Button(self.dialog, text="力をためる(R)")
         self.rbutton.place(x=320, y=340)
         self.rbutton["command"] = self.click_reserve
 

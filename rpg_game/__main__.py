@@ -110,7 +110,7 @@ if __name__ == "__main__":
     root.bind("<Down>", lambda event: click_btn_down())
     root.bind("<Left>", lambda event: click_btn_left())
     root.bind("<Right>", lambda event: click_btn_right())
-    root.bind("f", lambda event: fightmanager.click_fight())
+    root.bind("a", lambda event: fightmanager.click_fight())
     root.bind("r", lambda event: fightmanager.click_reserve())
 
     # 画像読み込み
