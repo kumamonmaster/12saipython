@@ -35,12 +35,45 @@ def decode_line(event):
         message.unbind("<Button-1>")
         btn = tk.Button(text=params[2], width=20)
         branch.append(btn)
-        btn.place(x=300, y=60 + int(params[1]) * 60)
+        btn["command"] = lambda : jump_to_line(int(params[1])-1)
+        btn.place(x=300, y=60+int(params[1])*60)
         jumplabel.append(params[3])
         if params[4] == "n":
             return
+    elif params[0] == "#jump":
+        label = params[1].strip()
+        # ジャンプ先を探す
+        for l in range(len(scanario)):
+            if scanario[l].strip() == "## " + label:
+                current_line = l
+                decode_line(None)
+                return
+    elif params[0].strip() == "#end":
+        message["text"] = "終わり"
+        message.unbind("<Button-1>")
+        current_line = 999999999
 
     decode_line(None)
+
+def jump_to_line(branchID):
+    global current_line
+
+    # ボタンを消す
+    for btn in branch:
+        btn.place_forget()
+        btn.destroy()
+
+    branch.clear()
+    label = jumplabel[branchID]
+    jumplabel.clear()
+    message.bind("<Button-1>", decode_line)
+
+    # ラベルにジャンプ
+    for l in range(len(scanario)):
+        if scanario[l].strip() == "## " + label:
+            current_line = l
+            decode_line(None)
+            return
 
 # ウィンドウの作成
 root = tk.Tk()
