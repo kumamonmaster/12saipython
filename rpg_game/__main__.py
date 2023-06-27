@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from character import Brave
+from common import resource_path
 import fight
 
 
@@ -40,7 +41,6 @@ def check_move(x, y):
         brave_x = x
         brave_y = y
         draw_map()
-        # canvas.coords("brave", brave_x * 62 + 31, brave_y * 62 + 31)
 
 # 上ボタンクリック
 def click_btn_up():
@@ -115,12 +115,12 @@ if __name__ == "__main__":
 
     # 画像読み込み
     images = [
-        tk.PhotoImage(file="img6/chap6-mapfield.png"),
-        tk.PhotoImage(file="img6/chap6-mapwall.png"),
-        tk.PhotoImage(file="img6/chap6-mapgoal.png"),
-        tk.PhotoImage(file="img6/chap6-mapkey.png"),
-        tk.PhotoImage(file="img6/chap6-mapman.png"),
-        tk.PhotoImage(file="img6/chap7-mapmonster.png")
+        tk.PhotoImage(file=resource_path("img/chap6-mapfield.png")),
+        tk.PhotoImage(file=resource_path("img/chap6-mapwall.png")),
+        tk.PhotoImage(file=resource_path("img/chap6-mapgoal.png")),
+        tk.PhotoImage(file=resource_path("img/chap6-mapkey.png")),
+        tk.PhotoImage(file=resource_path("img/chap6-mapman.png")),
+        tk.PhotoImage(file=resource_path("img/chap7-mapmonster.png"))
     ]
 
     # マップデータ

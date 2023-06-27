@@ -13,3 +13,4 @@ pip-selfcheck.json
 __pycache__
 .flake8
 .vscode
+build/

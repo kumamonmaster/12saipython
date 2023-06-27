@@ -3,6 +3,8 @@ import time
 import tkinter as tk
 
 from character import Monster1, Monster2
+from common import resource_path
+
 
 class FightManager:
     def __init__(self) -> None:
@@ -25,8 +27,8 @@ class FightManager:
 
         # 画像の読み込み
         self.images = [
-            tk.PhotoImage(file="img6/chap7-monster1.png"),
-            tk.PhotoImage(file="img6/chap7-monster2.png")
+            tk.PhotoImage(file=resource_path("img/chap7-monster1.png")),
+            tk.PhotoImage(file=resource_path("img/chap7-monster2.png"))
         ]
         self.canvas.create_image(180, 160, image=self.images[0])
 
