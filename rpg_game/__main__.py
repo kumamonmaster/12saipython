@@ -1,5 +1,6 @@
 import tkinter as tk
 
+from character import Brave
 import fight
 
 
@@ -138,7 +139,7 @@ if __name__ == "__main__":
     # 主人公の位置
     brave_x = 1
     brave_y = 0
-    brave = fight.Brave()
+    brave = Brave()
     print(brave.get_atk())
 
     # 鍵取得フラグ

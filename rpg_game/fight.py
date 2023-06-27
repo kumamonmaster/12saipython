@@ -2,6 +2,7 @@ import random
 import time
 import tkinter as tk
 
+from character import Monster1, Monster2
 
 class FightManager:
     def __init__(self) -> None:
@@ -83,7 +84,7 @@ class FightManager:
             self.label["text"] = label_text
             self.dialog.update()
 
-            time.sleep(1)
+            time.sleep(0.5)
 
             dmg = brave_atk - monster_dfs
             self.monster.culc_hp(brave_atk, monster_dfs)
@@ -96,21 +97,21 @@ class FightManager:
         self.label["text"] = label_text
         self.dialog.update()
 
-        time.sleep(1)
+        time.sleep(0.5)
 
         label_text += f"\nモンスターの残り体力は{self.monster.hp}"
         self.label["text"] = label_text
         self.dialog.update()
 
         if self.monster.hp < 1:
-            time.sleep(1)
+            time.sleep(0.5)
             self.fbutton["state"] = "normal"
             self.rbutton["state"] = "normal"
             self.fight_win()
             return
 
         # モンスターのターン
-        time.sleep(1)
+        time.sleep(0.5)
         brave_dfs = self.brave.get_dfs()
         if random.random() < 0.2:
             label_text += "\n\nモンスターは力をためた"
@@ -120,7 +121,7 @@ class FightManager:
             self.label["text"] = label_text
             self.dialog.update()
 
-            time.sleep(1)
+            time.sleep(0.5)
 
             monster_atk = self.monster.get_atk()
             dmg = monster_atk - brave_dfs
@@ -134,14 +135,14 @@ class FightManager:
         self.label["text"] = label_text
         self.dialog.update()
 
-        time.sleep(1)
+        time.sleep(0.5)
 
         label_text += f"\n勇者の残り体力は{self.brave.hp}"
         self.label["text"] = label_text
         self.dialog.update()
 
         if self.brave.hp < 1:
-            time.sleep(1)
+            time.sleep(0.5)
             self.fight_lose()
         else:
             self.fbutton["state"] = "normal"
@@ -159,66 +160,3 @@ class FightManager:
         canvas.create_rectangle(0, 0, 620, 434, fill="red")
         canvas.create_text(300, 200, fill="white", font=("MS ゴシック", 15), text="""勇者は負けてしまった。
 最初からやり直してくれたまえ。""")
-
-
-class Character:
-    """キャラクタークラス"""
-    def __new__(cls) -> None:
-        obj = super().__new__(cls)
-        obj.rsv = 1
-
-        return obj
-
-    def reserve(self):
-        """力をためる"""
-        self.rsv += 1
-
-    def get_atk(self):
-        """攻撃力を返す"""
-        r = self.rsv
-        self.rsv = 1
-        return random.randint(1, self.atk * r)
-
-    def get_dfs(self):
-        """防御力を返す"""
-        return random.randint(0, self.dfs)
-
-    def culc_hp(self, atk, dfs):
-        dmg = atk - dfs
-
-        if dmg < 1:
-            return self.hp
-
-        self.hp -= dmg
-
-        if self.hp < 1:
-            self.hp = 0
-
-        return self.hp
-
-
-class Brave(Character):
-    """勇者クラス"""
-    def __init__(self) -> None:
-        self.name = "勇者ハル"
-        self.hp = 30
-        self.atk = 15
-        self.dfs = 10
-
-
-class Monster1(Character):
-    """モンスター1クラス"""
-    def __init__(self) -> None:
-        self.name = "マコデビル"
-        self.hp = 20
-        self.atk = 15
-        self.dfs = 5
-
-
-class Monster2(Character):
-    """モンスター2クラス"""
-    def __init__(self) -> None:
-        self.name = "リリースネーク"
-        self.hp = 10
-        self.atk = 8
-        self.dfs = 5
