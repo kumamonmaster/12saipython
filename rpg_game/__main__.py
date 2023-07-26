@@ -42,29 +42,48 @@ def check_move(x, y):
         brave_y = y
         draw_map()
 
-# 上ボタンクリック
+
 def click_btn_up():
+    """上ボタンクリック時の処理"""
     root.unbind("<Up>")
     check_move(brave_x, brave_y - 1)
     root.bind("<Up>", lambda event: click_btn_up())
 
-# 下ボタンクリック
+
 def click_btn_down():
+    """下ボタンクリック時の処理"""
     root.unbind("<Down>")
     check_move(brave_x, brave_y + 1)
     root.bind("<Down>", lambda event: click_btn_down())
 
-# 左ボタンクリック
+
 def click_btn_left():
+    """左ボタンクリック時の処理"""
     root.unbind("<Left>")
     check_move(brave_x - 1, brave_y)
     root.bind("<Left>", lambda event: click_btn_left())
 
-# 右ボタンクリック
+
 def click_btn_right():
+    """右ボタンクリック時の処理"""
     root.unbind("<Right>")
     check_move(brave_x + 1, brave_y)
     root.bind("<Right>", lambda event: click_btn_right())
+
+
+def click_btn_a():
+    """Aボタンクリック時の処理"""
+    root.unbind("a")
+    fightmanager.click_fight()
+    root.bind("a", lambda event: click_btn_a())
+
+
+def click_btn_r():
+    """Rボタンクリック時の処理"""
+    root.unbind("r")
+    fightmanager.click_reserve()
+    root.bind("r", lambda event: click_btn_r())
+
 
 # エンディング表示
 def ending():
@@ -118,8 +137,8 @@ if __name__ == "__main__":
     root.bind("<Down>", lambda event: click_btn_down())
     root.bind("<Left>", lambda event: click_btn_left())
     root.bind("<Right>", lambda event: click_btn_right())
-    root.bind("a", lambda event: fightmanager.click_fight())
-    root.bind("r", lambda event: fightmanager.click_reserve())
+    root.bind("a", lambda event: click_btn_a())
+    root.bind("r", lambda event: click_btn_r())
 
     # 画像読み込み
     images = [
