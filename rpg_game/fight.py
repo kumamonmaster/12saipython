@@ -154,6 +154,7 @@ class FightManager:
         """戦闘勝利"""
         self.map_data[self.brave_y][self.brave_x] = 0
         self.dialog.place_forget()
+        del self.monster
 
     def fight_lose(self):
         """戦闘敗北"""

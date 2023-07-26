@@ -43,46 +43,73 @@ def check_move(x, y):
         draw_map()
 
 
+def bind_key():
+    """キーのバインド"""
+    global fightmanager
+
+    if hasattr(fightmanager, "monster"):
+        print("bind_fight_key")
+        root.bind("a", lambda event: click_btn_a())
+        root.bind("r", lambda event: click_btn_r())
+    else:
+        print("bind_move_key")
+        root.bind("<Up>", lambda event: click_btn_up())
+        root.bind("<Down>", lambda event: click_btn_down())
+        root.bind("<Left>", lambda event: click_btn_left())
+        root.bind("<Right>", lambda event: click_btn_right())
+
+
+def unbind_key():
+    """キーのアンバインド"""
+    print("unbind_key")
+    root.unbind("<Up>")
+    root.unbind("<Down>")
+    root.unbind("<Left>")
+    root.unbind("<Right>")
+    root.unbind("a")
+    root.unbind("r")
+
+
 def click_btn_up():
     """上ボタンクリック時の処理"""
-    root.unbind("<Up>")
+    unbind_key()
     check_move(brave_x, brave_y - 1)
-    root.bind("<Up>", lambda event: click_btn_up())
+    bind_key()
 
 
 def click_btn_down():
     """下ボタンクリック時の処理"""
-    root.unbind("<Down>")
+    unbind_key()
     check_move(brave_x, brave_y + 1)
-    root.bind("<Down>", lambda event: click_btn_down())
+    bind_key()
 
 
 def click_btn_left():
     """左ボタンクリック時の処理"""
-    root.unbind("<Left>")
+    unbind_key()
     check_move(brave_x - 1, brave_y)
-    root.bind("<Left>", lambda event: click_btn_left())
+    bind_key()
 
 
 def click_btn_right():
     """右ボタンクリック時の処理"""
-    root.unbind("<Right>")
+    unbind_key()
     check_move(brave_x + 1, brave_y)
-    root.bind("<Right>", lambda event: click_btn_right())
+    bind_key()
 
 
 def click_btn_a():
     """Aボタンクリック時の処理"""
-    root.unbind("a")
+    unbind_key()
     fightmanager.click_fight()
-    root.bind("a", lambda event: click_btn_a())
+    bind_key()
 
 
 def click_btn_r():
     """Rボタンクリック時の処理"""
-    root.unbind("r")
+    unbind_key()
     fightmanager.click_reserve()
-    root.bind("r", lambda event: click_btn_r())
+    bind_key()
 
 
 # エンディング表示
@@ -132,14 +159,6 @@ if __name__ == "__main__":
     btn_right.place(x=780, y=180)
     btn_right["command"] = click_btn_right
 
-    # キーボードの操作設定
-    root.bind("<Up>", lambda event: click_btn_up())
-    root.bind("<Down>", lambda event: click_btn_down())
-    root.bind("<Left>", lambda event: click_btn_left())
-    root.bind("<Right>", lambda event: click_btn_right())
-    root.bind("a", lambda event: click_btn_a())
-    root.bind("r", lambda event: click_btn_r())
-
     # 画像読み込み
     images = [
         tk.PhotoImage(file=resource_path("img/chap6-mapfield.png")),
@@ -167,13 +186,15 @@ if __name__ == "__main__":
     brave_x = 1
     brave_y = 0
     brave = Brave()
-    print(brave.get_atk())
 
     # 鍵取得フラグ
     key_flag = False
 
     # 先頭画面の準備
     fightmanager = fight.FightManager()
+
+    # キーボードの操作設定
+    bind_key()
 
     draw_map()
     root.mainloop()
