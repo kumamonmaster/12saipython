@@ -48,11 +48,9 @@ def bind_key():
     global fightmanager
 
     if hasattr(fightmanager, "monster"):
-        print("bind_fight_key")
         root.bind("a", lambda event: click_btn_a())
         root.bind("r", lambda event: click_btn_r())
     else:
-        print("bind_move_key")
         root.bind("<Up>", lambda event: click_btn_up())
         root.bind("<Down>", lambda event: click_btn_down())
         root.bind("<Left>", lambda event: click_btn_left())
@@ -61,7 +59,6 @@ def bind_key():
 
 def unbind_key():
     """キーのアンバインド"""
-    print("unbind_key")
     root.unbind("<Up>")
     root.unbind("<Down>")
     root.unbind("<Left>")
