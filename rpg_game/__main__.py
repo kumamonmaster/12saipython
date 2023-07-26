@@ -5,8 +5,8 @@ from common import resource_path
 import fight
 
 
-# マップの描画
 def draw_map():
+    """マップの描画"""
     for y in range(MAX_HEIGHT):
         for x in range(MAX_WIDTH):
             p = map_data[y][x]
@@ -17,8 +17,9 @@ def draw_map():
     # 主人公表示
     canvas.create_image(brave_x * 62 + 31, brave_y * 62 + 31, image=images[4], tag="brave")
 
-# 移動先のチェック
+
 def check_move(x, y):
+    """移動先のチェック"""
     global brave_x, brave_y, key_flag
     if x >= 0 and x < MAX_WIDTH and y >= 0 and y < MAX_HEIGHT:
         p = map_data[y][x]
@@ -48,11 +49,9 @@ def bind_key():
     global fightmanager
 
     if hasattr(fightmanager, "monster"):
-        print("fight bind")
         root.bind("a", lambda event: click_btn_a())
         root.bind("r", lambda event: click_btn_r())
     else:
-        print("move bind")
         root.bind("<Up>", lambda event: click_btn_up())
         root.bind("<Down>", lambda event: click_btn_down())
         root.bind("<Left>", lambda event: click_btn_left())
@@ -114,8 +113,8 @@ def click_btn_r():
     fightmanager.click_reserve()
 
 
-# エンディング表示
 def ending():
+    """エンディング表示"""
     canvas.delete("all")
     canvas.create_rectangle(0, 0, 620, 434, fill="black")
     canvas.create_text(300, 200,
