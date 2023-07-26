@@ -48,9 +48,11 @@ def bind_key():
     global fightmanager
 
     if hasattr(fightmanager, "monster"):
+        print("fight bind")
         root.bind("a", lambda event: click_btn_a())
         root.bind("r", lambda event: click_btn_r())
     else:
+        print("move bind")
         root.bind("<Up>", lambda event: click_btn_up())
         root.bind("<Down>", lambda event: click_btn_down())
         root.bind("<Left>", lambda event: click_btn_left())
@@ -67,46 +69,49 @@ def unbind_key():
     root.unbind("r")
 
 
+def key_bind(func):
+    """キーのバインドを行うデコレータ"""
+    def wrapper(*args, **kwargs):
+        unbind_key()
+        func(*args, **kwargs)
+        bind_key()
+    return wrapper
+
+
+@key_bind
 def click_btn_up():
     """上ボタンクリック時の処理"""
-    unbind_key()
     check_move(brave_x, brave_y - 1)
-    bind_key()
 
 
+@key_bind
 def click_btn_down():
     """下ボタンクリック時の処理"""
-    unbind_key()
     check_move(brave_x, brave_y + 1)
-    bind_key()
 
 
+@key_bind
 def click_btn_left():
     """左ボタンクリック時の処理"""
-    unbind_key()
     check_move(brave_x - 1, brave_y)
-    bind_key()
 
 
+@key_bind
 def click_btn_right():
     """右ボタンクリック時の処理"""
-    unbind_key()
     check_move(brave_x + 1, brave_y)
-    bind_key()
 
 
+@key_bind
 def click_btn_a():
     """Aボタンクリック時の処理"""
-    unbind_key()
     fightmanager.click_fight()
-    bind_key()
 
 
+@key_bind
 def click_btn_r():
     """Rボタンクリック時の処理"""
-    unbind_key()
     fightmanager.click_reserve()
-    bind_key()
 
 
 # エンディング表示
