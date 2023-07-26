@@ -44,19 +44,27 @@ def check_move(x, y):
 
 # 上ボタンクリック
 def click_btn_up():
+    root.unbind("<Up>")
     check_move(brave_x, brave_y - 1)
+    root.bind("<Up>", lambda event: click_btn_up())
 
 # 下ボタンクリック
 def click_btn_down():
+    root.unbind("<Down>")
     check_move(brave_x, brave_y + 1)
+    root.bind("<Down>", lambda event: click_btn_down())
 
 # 左ボタンクリック
 def click_btn_left():
+    root.unbind("<Left>")
     check_move(brave_x - 1, brave_y)
+    root.bind("<Left>", lambda event: click_btn_left())
 
 # 右ボタンクリック
 def click_btn_right():
+    root.unbind("<Right>")
     check_move(brave_x + 1, brave_y)
+    root.bind("<Right>", lambda event: click_btn_right())
 
 # エンディング表示
 def ending():
